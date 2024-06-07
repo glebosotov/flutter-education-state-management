@@ -2,6 +2,8 @@
 
 Flutter project to illustrate some state management packages.
 
+## [Live demo](https://glebosotov.github.io/flutter-education-state-management/)
+
 ## Links from my lecture on this topic
 
 - [What is State (by flutter)](https://docs.flutter.dev/data-and-backend/state-mgmt/ephemeral-vs-app)
@@ -30,4 +32,4 @@ stateDiagram-v2
 - [mobx](https://pub.dev/packages/mobx)
 - [redux](https://pub.dev/packages/redux)
 - [provider](https://pub.dev/packages/provider)
-- [setState]
+- setState
