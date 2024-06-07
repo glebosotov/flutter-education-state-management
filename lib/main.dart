@@ -24,8 +24,15 @@ class _App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomeScreen(),
+    final theme = ThemeData(
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: Colors.teal,
+      ),
+    );
+
+    return MaterialApp(
+      theme: theme,
+      home: const HomeScreen(),
     );
   }
 }
@@ -72,6 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Expanded(
               child: PageView.builder(
+                physics: const NeverScrollableScrollPhysics(),
                 controller: _controller,
                 itemBuilder: (context, index) {
                   final approach = Approaches.values[index];
