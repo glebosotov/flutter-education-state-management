@@ -12,6 +12,7 @@ class ReduxScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreProvider<ShapeState>(
+      /// Use some DI to get/create manager here
       store: store,
       child: StoreConnector<ShapeState, ShapeState>(
         converter: (store) => store.state,

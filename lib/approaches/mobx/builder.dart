@@ -13,6 +13,7 @@ class MobxScreen extends StatefulWidget {
 }
 
 class _MobxScreenState extends State<MobxScreen> {
+  /// Use some DI to get/create manager here
   final _manager = MobxShapeChanger();
   @override
   Widget build(BuildContext context) {

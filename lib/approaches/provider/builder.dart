@@ -11,8 +11,9 @@ class ChangeNotifierScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => ShapeRiverpodProvider(),
-      builder: (context, _) => Consumer<ShapeRiverpodProvider>(
+      /// Use some DI to get/create manager here
+      create: (context) => ShapeChangeNotifier(),
+      builder: (context, _) => Consumer<ShapeChangeNotifier>(
         builder: (context, value, child) {
           final state = value.state;
 

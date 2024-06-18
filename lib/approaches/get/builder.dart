@@ -11,6 +11,7 @@ class GetxScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetX<GetxShapeController>(
+      /// Use some DI to get/create manager here
       init: GetxShapeController(),
       builder: (GetxShapeController controller) {
         final state = controller.state.value;

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../data/state.dart';
 import '../../utils/color.dart';
 
-class ShapeRiverpodProvider extends ChangeNotifier {
+class ShapeChangeNotifier extends ChangeNotifier {
   ShapeState _state = const ShapeState.empty();
   ShapeState get state => _state;
 

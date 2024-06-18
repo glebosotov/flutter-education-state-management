@@ -13,6 +13,7 @@ class BlocScreen extends StatefulWidget {
 }
 
 class _BlocScreenState extends State<BlocScreen> {
+  /// Use some DI to get/create manager here
   final bloc = ShapeCubit();
   @override
   Widget build(BuildContext context) => BlocBuilder<ShapeCubit, ShapeState>(
