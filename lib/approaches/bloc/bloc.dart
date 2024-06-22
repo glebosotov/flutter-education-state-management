@@ -2,13 +2,30 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 
-import '../../data/state.dart';
+import '/approaches/bloc/bloc_event.dart';
+import '/data/state.dart';
 import '../../utils/color.dart';
 
-class ShapeCubit extends Cubit<ShapeState> {
-  ShapeCubit() : super(const ShapeState.empty());
+class ShapeBloc extends Bloc<ShapeEvent, ShapeState> {
+  ShapeBloc() : super(const ShapeState.empty()) {
+    on<ShapeEvent>(_handleEvent);
+  }
 
-  void reset() {
+  void _handleEvent(
+    ShapeEvent event,
+    Emitter<ShapeState> emit,
+  ) =>
+      switch (event) {
+        ResetShapeEvent() => _handleResetEvent(event, emit),
+        CircleShapeEvent() => _handleCircleEvent(event, emit),
+        SquareShapeEvent() => _handleSquareEvent(event, emit),
+        ChangeColorShapeEvent() => _handleChangeColorEvent(event, emit),
+      };
+
+  void _handleResetEvent(
+    ShapeEvent event,
+    Emitter<ShapeState> emit,
+  ) {
     if (state.isEmpty) {
       addError(Exception('Cannot reset from state $state'));
       return;
@@ -16,7 +33,10 @@ class ShapeCubit extends Cubit<ShapeState> {
     emit(const ShapeState.empty());
   }
 
-  void makeCircle() {
+  void _handleCircleEvent(
+    ShapeEvent event,
+    Emitter<ShapeState> emit,
+  ) {
     if (state.isEmpty) {
       emit(
         ShapeState.circle(
@@ -29,7 +49,10 @@ class ShapeCubit extends Cubit<ShapeState> {
     }
   }
 
-  void makeSquare() {
+  void _handleSquareEvent(
+    ShapeEvent event,
+    Emitter<ShapeState> emit,
+  ) {
     if (state.isEmpty) {
       emit(
         ShapeState.square(
@@ -42,7 +65,10 @@ class ShapeCubit extends Cubit<ShapeState> {
     }
   }
 
-  void changeColor() {
+  void _handleChangeColorEvent(
+    ShapeEvent event,
+    Emitter<ShapeState> emit,
+  ) {
     if (state.isEmpty) {
       addError(Exception('Cannot changeColor from state $state'));
       return;

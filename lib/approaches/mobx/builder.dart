@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:mobx/mobx.dart';
 
 import '../../data/state.dart';
 import '../../presentation/layout.dart';
@@ -13,8 +16,29 @@ class MobxScreen extends StatefulWidget {
 }
 
 class _MobxScreenState extends State<MobxScreen> {
-  /// Use some DI to get/create manager here
-  final _manager = MobxShapeChanger();
+  late final MobxShapeChanger _manager;
+  late final ReactionDisposer _reactionDisposer;
+
+  @override
+  void initState() {
+    super.initState();
+
+    /// Use some DI to get/create manager here
+    _manager = MobxShapeChanger();
+    _reactionDisposer = autorun(
+      (_) {
+        log(_manager.value.toString());
+      },
+      onError: (p0, p1) => log('$p0, $p1'),
+    );
+  }
+
+  @override
+  void dispose() {
+    _reactionDisposer();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Observer(

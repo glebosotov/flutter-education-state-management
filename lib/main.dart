@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'approaches/approaches_enum.dart';
-import 'approaches/bloc/builder.dart';
+import 'approaches/bloc/bloc_builder.dart';
+import 'approaches/bloc/cubit_builder.dart';
 import 'approaches/elementary/widget.dart';
 import 'approaches/get/builder.dart';
 import 'approaches/mobx/builder.dart';
@@ -84,14 +85,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemBuilder: (context, index) {
                   final approach = Approaches.values[index];
                   return switch (approach) {
+                    Approaches.setState => const FlutterSetStateScreen(),
+                    Approaches.provider => const ChangeNotifierScreen(),
+                    Approaches.riverpod => const RiverpodScreen(),
+                    Approaches.blocCubit => const BlocCubitScreen(),
                     Approaches.bloc => const BlocScreen(),
                     Approaches.elementary => const ElementaryShapeWidget(),
                     Approaches.getx => const GetxScreen(),
                     Approaches.mobx => const MobxScreen(),
-                    Approaches.provider => const ChangeNotifierScreen(),
                     Approaches.redux => const ReduxScreen(),
-                    Approaches.riverpod => const RiverpodScreen(),
-                    Approaches.setState => const FlutterSetStateScreen(),
                   };
                 },
                 itemCount: Approaches.values.length,

@@ -1,6 +1,6 @@
 import 'package:riverpod/riverpod.dart';
-import 'package:state_management/data/state.dart';
 
+import '/data/state.dart';
 import '../../utils/color.dart';
 
 class ShapeRiverpodProvider extends StateNotifier<ShapeState> {
